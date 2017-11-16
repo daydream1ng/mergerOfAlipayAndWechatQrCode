@@ -14,11 +14,6 @@ from hello.zxing import zxing_bar
 # Create your views here.
 def index(request):
     contents = {}
-    img = os.path.dirname(os.path.dirname(__file__)) + '/hello/zxing/23232.png'
-    print(img)
-    bar = zxing_bar.qrCodeReader(img)
-    return render(request, 'hello/wxcode.html', {'url': None,
-                                                 'info': bar})
 
     if request.method == 'POST':
         ali = request.FILES.get('ali-img', None)
@@ -190,7 +185,16 @@ def addLogo(img, logo):
 
 # 二维码识别
 def scanQrCode(path):
-    return None
+    # zxing
+    codes = zxing_bar.qrCodeReader(imgPath=path)
+    if codes != None:
+        print('二维码识别结果：' + codes)
+        return codes
+    else:
+        print('二维码识别失败')
+        return None
+
+    # zbarlight
     # with open(path, 'rb') as image_file:
     #     image = Image.open(image_file)
     #     image.load()

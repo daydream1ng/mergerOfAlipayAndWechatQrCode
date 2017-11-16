@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 ########################################################################
 #
 #  zxing.py -- a quick and dirty wrapper for zxing for python
@@ -53,6 +54,8 @@ class BarCodeReader():
     print("cmd:",cmd)
     (stdout, stderr) = subprocess.Popen(cmd, stdout=subprocess.PIPE, universal_newlines=True).communicate()
     codes = []
+    print(stdout)
+    print(stderr)
     file_results = stdout.split("\nfile:")
 
     for result in file_results:
