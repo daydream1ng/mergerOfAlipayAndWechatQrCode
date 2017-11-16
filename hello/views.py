@@ -15,6 +15,11 @@ from hello.zxing import zxing_bar
 def index(request):
     contents = {}
 
+    pa = os.path.dirname(os.path.dirname(__file__)) + '/media/img/8989.png'
+    codes = zxing_bar.qrCodeReader(imgPath=pa)
+    return render(request, 'hello/wxcode.html', {'url': None,
+                                                 'info': codes})
+
     if request.method == 'POST':
         ali = request.FILES.get('ali-img', None)
         wx = request.FILES.get('wx-img', None)
