@@ -1,12 +1,34 @@
 {% load staticfiles %}
 <link rel="stylesheet" type="text/css" href="{% static 'hello/styles.css' %}" />
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
     <title>收款码合成</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+
+    <script type="text/javascript" src="{% static 'hello/js/grid.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/version.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/detector.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/formatinf.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/errorlevel.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/bitmat.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/datablock.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/bmparser.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/datamask.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/rsdecoder.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/gf256poly.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/gf256.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/decoder.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/qrcode.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/findpat.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/alignpat.js' %}"></script>
+    <script type="text/javascript" src="{% static 'hello/js/databr.js' %}"></script>
+
 </head>
+
+
 <body>
     <div class="container">
             <label class="container-header">收款码合成</label>
@@ -16,17 +38,19 @@
 
                     <div class="input">
                         <label class="input-label">支付宝</label>
-                        <input type="file" name="ali-img" class="myUpload">
+                        <input type="file" accept="image/*" class="myUpload" id="alipay" onchange="scanAlipayImage()">
+                        <input type="text" name="ali-img" id="ali_val"/>
                     </div>
 
                     <div class="input">
                         <label class="input-label">微信</label>
-                        <input type="file" name="wx-img" class="myUpload">
+                        <input type="file" accept="image/*" class="myUpload" id="wechat" onchange="scanWechatImage()">
+                        <input type="text" name="wx-img" id="wx_val"/>
                     </div>
-
+                    <input type="text" placeholder="file name" id="aim"/>
                     <div class="input">
                         <label class="input-label">LOGO</label>
-                        <input type="file" name="logo" class="myUpload">
+                        <input type="file" accept="image/*" name="logo" class="myUpload">
                     </div>
             </div>
             <div class="submit-section">
@@ -34,9 +58,64 @@
             </div>
         </form>
     </div>
+    <button onclick="scanImage()">Capture</button><br>
     <div class="footer">
         <img src="../../static/zeyicheng.jpg" class="logo-img">
     </div>
-
 </body>
+
+<script type="text/javascript">
+
+    var alipay = $('#alipay');
+    var wechat = $('#wechat');
+    var ali_val = $('#ali_val');
+    var wx_val = $('#wx_val');
+
+    function getObjectURL(file) {
+        var url = null;
+        if (window.createObjcectURL != undefined) {
+            url = window.createOjcectURL(file);
+        } else if (window.URL != undefined) {
+            url = window.URL.createObjectURL(file);
+        } else if (window.webkitURL != undefined) {
+            url = window.webkitURL.createObjectURL(file);
+        }
+        return url;
+    }
+
+    function scanAlipayImage(e) {
+        var selectedFile = document.getElementById("alipay").files[0];
+        var objURL = getObjectURL(selectedFile);
+        qrcode.callback = aliRead;
+        qrcode.decode(objURL)
+    }
+
+    function aliRead(e) {
+        if (0 <= e.indexOf("HTTPS://QR.ALIPAY.COM/")) {
+            document.getElementById("alipay").style.backgroundColor= "green";
+            ali_val.value = e
+        } else {
+            document.getElementById("alipay").style.backgroundColor= "red";
+            alert(e)
+        }
+    }
+
+    function scanWechatImage(e) {
+        var selectedFile = document.getElementById("wechat").files[0];
+        var objURL = getObjectURL(selectedFile);
+        qrcode.callback = wxRead;
+        qrcode.decode(objURL)
+    }
+
+    function wxRead(e) {
+        if (0 <= e.indexOf("wxp://")) {
+            document.getElementById("wechat").style.backgroundColor= "green";
+            wx_val.value = e
+        } else {
+            document.getElementById("wechat").style.backgroundColor= "red";
+            alert(e)
+        }
+    }
+
+</script>
 </html>

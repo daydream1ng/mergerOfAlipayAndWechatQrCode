@@ -7,86 +7,38 @@ import os
 
 from PIL import Image
 import qrcode
-# import zbarlight
 from hello.zxing import zxing_bar
 
 
 # Create your views here.
 def index(request):
     contents = {}
-
-    pa = os.path.dirname(os.path.dirname(__file__)) + '/media/img/8989.png'
-    codes = zxing_bar.qrCodeReader(imgPath=pa)
-    return render(request, 'hello/wxcode.html', {'url': None,
-                                                 'info': codes})
-
     if request.method == 'POST':
-        ali = request.FILES.get('ali-img', None)
-        wx = request.FILES.get('wx-img', None)
+        ali = request.POST.get('ali-img', None)
+        wx = request.POST.get('wx-img', None)
+
         if ali == None or wx == None:
             return render(request, 'hello/wxcode.html', {'url': None,
                                                          'info': "请先上传微信和支付宝的收款二维码"})
 
-        if ali != None:
-            # print(Img.objects.filter(name='alipay'))
-            # if Img.objects.filter(name='alipay') != None:
-            #     for img in Img.objects.filter(name='alipay'):
-            #         img.delete()
-
-            nAli_img = Img(
-                img=request.FILES.get('ali-img', None),
-                name='aaa'
-            )
-            nAli_img.save()
-            # 二维码识别
-            file_path = os.path.dirname(os.path.dirname(__file__)) + '/media/'
-            result = scanQrCode(file_path + nAli_img.img.name)
-            if result != None:
-                if result.find('HTTPS://QR.ALIPAY.COM') != -1:
-                    print("是支付宝的收款码：" + result[22:])
-                    contents['alipay'] = result[22:]
-                else:
-                    print('不是支付宝收款码')
-                    contents['alipay'] = None
-                    return render(request, 'hello/wxcode.html', {'url': None,
-                                                                 'info': "支付宝收款二维码错误"})
-            else:
-                print('不是支付宝收款码')
-                contents['alipay'] = None
-                return render(request, 'hello/wxcode.html', {'url': None,
-                                                             'info': "支付宝收款二维码错误"})
-            os.remove(file_path + nAli_img.img.name)
+        if ali.find('HTTPS://QR.ALIPAY.COM') != -1:
+            print("是支付宝的收款码：" + ali[22:])
+            contents['alipay'] = ali[22:]
         else:
+            print('不是支付宝收款码')
             contents['alipay'] = None
-        if wx != None:
-            # if Img.objects.filter(name='wechat') != None:
-            #     for img in Img.objects.filter(name='wechat'):
-            #         img.delete()
-            nWx_img = Img(
-                img=request.FILES.get('wx-img', None),
-                name="www"
-            )
-            nWx_img.save()
-            # 二维码识别
-            file_path = os.path.dirname(os.path.dirname(__file__)) + '/media/'
-            result = scanQrCode(file_path + nWx_img.img.name)
-            if result != None:
-                if result.find('wxp://') != -1:
-                    print("是微信的收款码：" + result[6:])
-                    contents['wechat'] = result[6:]
-                else:
-                    print('不是微信收款码')
-                    contents['wechat'] = None
-                    return render(request, 'hello/wxcode.html', {'url': None,
-                                                                 'info': "微信收款二维码错误"})
-            else:
-                print('不是微信收款码')
-                contents['wechat'] = None
-                return render(request, 'hello/wxcode.html', {'url': None,
-                                                             'info': "微信收款二维码错误"})
-            os.remove(file_path + nWx_img.img.name)
+            return render(request, 'hello/wxcode.html', {'url': None,
+                                                         'info': "支付宝收款二维码错误"})
+
+        if wx.find('wxp://') != -1:
+            print("是微信的收款码：" + wx[6:])
+            contents['wechat'] = wx[6:]
         else:
+            print('不是微信收款码')
             contents['wechat'] = None
+            return render(request, 'hello/wxcode.html', {'url': None,
+                                                         'info': "微信收款二维码错误"})
+
     else:
         contents['alipay'] = None
         contents['wechat'] = None
@@ -105,17 +57,16 @@ def index(request):
         img = qr.make_image()
 
         # LOGO
-        logo = request.FILES.get('logo', None)
-        if logo != None:
-            logo_img = Img(
-                img=logo,
-                name="logo"
-            )
-            logo_img.save()
-            file_path = os.path.dirname(os.path.dirname(__file__)) + '/media/' + logo_img.img.name
-            img = addLogo(img, file_path)
-            os.remove(file_path)
-
+        # logo = request.FILES.get('logo', None)
+        # if logo != None:
+        #     logo_img = Img(
+        #         img=logo,
+        #         name="logo"
+        #     )
+        #     logo_img.save()
+        #     file_path = os.path.dirname(os.path.dirname(__file__)) + '/media/' + logo_img.img.name
+        #     img = addLogo(img, file_path)
+        #     os.remove(file_path)
 
         img.save("media/img/qrcode.png")
         file_path = '/media/img/qrcode.png'
@@ -191,14 +142,15 @@ def addLogo(img, logo):
 
 # 二维码识别
 def scanQrCode(path):
+    return None
     # zxing
-    codes = zxing_bar.qrCodeReader(imgPath=path)
-    if codes != None:
-        print('二维码识别结果：' + codes)
-        return codes
-    else:
-        print('二维码识别失败')
-        return None
+    # codes = zxing_bar.qrCodeReader(imgPath=path)
+    # if codes != None:
+    #     print('二维码识别结果：' + codes)
+    #     return codes
+    # else:
+    #     print('二维码识别失败')
+    #     return None
 
     # zbarlight
     # with open(path, 'rb') as image_file:
