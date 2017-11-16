@@ -23,13 +23,14 @@ def index(request):
                                                          'info': "请先上传微信和支付宝的收款二维码"})
 
         if ali != None:
-            if Img.objects.filter(name='alipay') != None:
-                for img in Img.objects.filter(name='alipay'):
-                    img.delete()
+            # print(Img.objects.filter(name='alipay'))
+            # if Img.objects.filter(name='alipay') != None:
+            #     for img in Img.objects.filter(name='alipay'):
+            #         img.delete()
 
             nAli_img = Img(
                 img=request.FILES.get('ali-img', None),
-                name='alipay'
+                name='aaa'
             )
             nAli_img.save()
             # 二维码识别
@@ -53,12 +54,12 @@ def index(request):
         else:
             contents['alipay'] = None
         if wx != None:
-            if Img.objects.filter(name='wechat') != None:
-                for img in Img.objects.filter(name='wechat'):
-                    img.delete()
+            # if Img.objects.filter(name='wechat') != None:
+            #     for img in Img.objects.filter(name='wechat'):
+            #         img.delete()
             nWx_img = Img(
                 img=request.FILES.get('wx-img', None),
-                name="wechat"
+                name="www"
             )
             nWx_img.save()
             # 二维码识别
