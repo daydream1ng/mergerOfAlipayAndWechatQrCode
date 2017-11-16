@@ -32,12 +32,13 @@ Also, there were 4 result points.
 
 
 def qrCodeReader(imgPath):
-    try:
-        zx = BarCodeReader()
-        barcode = zx.decode(imgPath)
-        print('二维码：', barcode.data)
-        return barcode.data
-    except:
-        return None
+    zx = BarCodeReader()
+    barcode = zx.decode(imgPath)
+    print('二维码：', barcode.data)
+    return barcode.data
+    # try:
+    #
+    # except:
+    #     return None
 
 
