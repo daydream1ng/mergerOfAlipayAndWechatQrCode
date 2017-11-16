@@ -7,12 +7,18 @@ import os
 
 from PIL import Image
 import qrcode
-import zbarlight
+# import zbarlight
+from hello.zxing import zxing_bar
 
 
 # Create your views here.
 def index(request):
     contents = {}
+    img = os.path.dirname(os.path.dirname(__file__)) + '/hello/zxing/23232.png'
+    print(img)
+    bar = zxing_bar.qrCodeReader(img)
+    return render(request, 'hello/wxcode.html', {'url': None,
+                                                 'info': bar})
 
     if request.method == 'POST':
         ali = request.FILES.get('ali-img', None)
@@ -184,20 +190,20 @@ def addLogo(img, logo):
 
 # 二维码识别
 def scanQrCode(path):
-    # return None
-    with open(path, 'rb') as image_file:
-        image = Image.open(image_file)
-        image.load()
-    # wxp://f2f0JV5T664Amfb_JDHLXtMBTrL2_8PvU68O
-    # HTTPS://QR.ALIPAY.COM/FKX05639AEMUOSN0TE016F
-    codes = zbarlight.scan_codes('qrcode', image)
-    if codes != None:
-        code = str(codes[0]).lstrip("b'").rstrip("'")
-        print('二维码识别结果：' + code)
-        return code
-    else:
-        print('二维码识别失败')
-        return None
+    return None
+    # with open(path, 'rb') as image_file:
+    #     image = Image.open(image_file)
+    #     image.load()
+    # # wxp://f2f0JV5T664Amfb_JDHLXtMBTrL2_8PvU68O
+    # # HTTPS://QR.ALIPAY.COM/FKX05639AEMUOSN0TE016F
+    # codes = zbarlight.scan_codes('qrcode', image)
+    # if codes != None:
+    #     code = str(codes[0]).lstrip("b'").rstrip("'")
+    #     print('二维码识别结果：' + code)
+    #     return code
+    # else:
+    #     print('二维码识别失败')
+    #     return None
 
 
 
