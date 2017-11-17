@@ -118,6 +118,7 @@ def addLogo(img, logo):
     try:
         img = img.convert("RGBA")
         icon = Image.open(logo)
+        icon = icon.convert("RGBA")
         img_w, img_h = img.size
         factor = 6
         size_w = int(img_w / factor)

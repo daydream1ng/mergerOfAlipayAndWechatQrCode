@@ -107,14 +107,21 @@
             document.getElementById("wechat_name").style.backgroundColor= "#229F2B";
             document.getElementById("wx_val").value = e;
         } else {
-            alert("微信收款二维码错误，请重新上传")
+            alert("微信收款二维码错误，请重新上传");
             document.getElementById("wechat_name").style.backgroundColor= "red";
             document.getElementById("wx_val").value = '';
         }
     }
 
     function addLogo(e) {
-        document.getElementById("logo_img").style.backgroundColor= "yellowgreen";
+        var selectedFile = document.getElementById("alipay").files[0];
+        if (selectedFile.size < 1024*1024) {
+            document.getElementById("logo_img").style.backgroundColor= "yellowgreen";
+        } else {
+            alert("亲，换张小点儿的LOGO");
+            document.getElementById("logo_img").style.backgroundColor= "red";
+        }
+
     }
 
 </script>
