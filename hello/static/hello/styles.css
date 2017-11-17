@@ -25,12 +25,10 @@ body {
 }
 
 .input-section {
-    /*margin-top: 10%;*/
     margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 90px;
 }
 
 .submit-section {
@@ -45,18 +43,16 @@ body {
     align-items: center;
     margin-bottom: 20px;
     color: white;
+    width: 100%;
 }
 
 .input-label {
-    width: 60px;
+    width: 160px;
     text-align: center;
     color: white;
-    /*padding: 1px;*/
-    margin-right: 10px;
-    /*background-color: cornflowerblue;*/
+    padding: 5px;
     border:1px solid;
     border-radius:2px;
-    /*margin-bottom: 5px;*/
     font-size: smaller;
 }
 
@@ -102,4 +98,5 @@ button {
     justify-content: center;
     flex-direction: column;
 }
+
 

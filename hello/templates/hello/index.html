@@ -31,26 +31,26 @@
 
 <body>
     <div class="container">
-            <label class="container-header">收款码合成</label>
+            <label class="container-header">收款码</label>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="input-section">
 
                     <div class="input">
-                        <label class="input-label">支付宝</label>
-                        <input type="file" accept="image/*" class="myUpload" id="alipay" onchange="scanAlipayImage()">
-                        <input type="text" name="ali-img" id="ali_val"/>
+                        <label class="input-label" for="alipay" id="alipay_name">支付宝</label>
+                        <input type="file" accept="image/*" style="display: none" id="alipay" onchange="scanAlipayImage()">
+                        <input type="text" name="ali-img" id="ali_val" style="display: none" />
                     </div>
 
                     <div class="input">
-                        <label class="input-label">微信</label>
-                        <input type="file" accept="image/*" class="myUpload" id="wechat" onchange="scanWechatImage()">
-                        <input type="text" name="wx-img" id="wx_val"/>
+                        <label class="input-label" for="wechat" id="wechat_name">微信</label>
+                        <input type="file" accept="image/*" style="display: none" id="wechat" onchange="scanWechatImage()">
+                        <input type="text" name="wx-img" id="wx_val" style="display: none" />
                     </div>
-                    <input type="text" placeholder="file name" id="aim"/>
+
                     <div class="input">
-                        <label class="input-label">LOGO</label>
-                        <input type="file" accept="image/*" name="logo" class="myUpload">
+                        <label class="input-label" for="logo" id="logo_img">LOGO</label>
+                        <input type="file" accept="image/*" name="logo" style="display: none" id="logo" onchange="addLogo()">
                     </div>
             </div>
             <div class="submit-section">
@@ -58,18 +58,12 @@
             </div>
         </form>
     </div>
-    <button onclick="scanImage()">Capture</button><br>
     <div class="footer">
         <img src="../../static/zeyicheng.jpg" class="logo-img">
     </div>
 </body>
 
 <script type="text/javascript">
-
-    var alipay = $('#alipay');
-    var wechat = $('#wechat');
-    var ali_val = $('#ali_val');
-    var wx_val = $('#wx_val');
 
     function getObjectURL(file) {
         var url = null;
@@ -92,11 +86,12 @@
 
     function aliRead(e) {
         if (0 <= e.indexOf("HTTPS://QR.ALIPAY.COM/")) {
-            document.getElementById("alipay").style.backgroundColor= "green";
-            ali_val.value = e
+            document.getElementById("alipay_name").style.backgroundColor= "#118CE2";
+            document.getElementById("ali_val").value = e;
         } else {
-            document.getElementById("alipay").style.backgroundColor= "red";
-            alert(e)
+            alert("支付宝收款二维码错误，请重新上传")
+            document.getElementById("alipay_name").style.backgroundColor= "red";
+            document.getElementById("ali_val").value = '';
         }
     }
 
@@ -109,12 +104,17 @@
 
     function wxRead(e) {
         if (0 <= e.indexOf("wxp://")) {
-            document.getElementById("wechat").style.backgroundColor= "green";
-            wx_val.value = e
+            document.getElementById("wechat_name").style.backgroundColor= "#229F2B";
+            document.getElementById("wx_val").value = e;
         } else {
-            document.getElementById("wechat").style.backgroundColor= "red";
-            alert(e)
+            alert("微信收款二维码错误，请重新上传")
+            document.getElementById("wechat_name").style.backgroundColor= "red";
+            document.getElementById("wx_val").value = '';
         }
+    }
+
+    function addLogo(e) {
+        document.getElementById("logo_img").style.backgroundColor= "yellowgreen";
     }
 
 </script>

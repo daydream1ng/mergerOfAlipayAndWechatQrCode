@@ -7,7 +7,7 @@ import os
 
 from PIL import Image
 import qrcode
-from hello.zxing import zxing_bar
+# from hello.zxing import zxing_bar
 
 
 # Create your views here.
@@ -17,6 +17,7 @@ def index(request):
         ali = request.POST.get('ali-img', None)
         wx = request.POST.get('wx-img', None)
 
+        print(ali, wx)
         if ali == None or wx == None:
             return render(request, 'hello/wxcode.html', {'url': None,
                                                          'info': "请先上传微信和支付宝的收款二维码"})
@@ -42,7 +43,6 @@ def index(request):
     else:
         contents['alipay'] = None
         contents['wechat'] = None
-    print(contents)
 
     qr = qrcode.QRCode(
         version=1,
@@ -57,22 +57,21 @@ def index(request):
         img = qr.make_image()
 
         # LOGO
-        # logo = request.FILES.get('logo', None)
-        # if logo != None:
-        #     logo_img = Img(
-        #         img=logo,
-        #         name="logo"
-        #     )
-        #     logo_img.save()
-        #     file_path = os.path.dirname(os.path.dirname(__file__)) + '/media/' + logo_img.img.name
-        #     img = addLogo(img, file_path)
-        #     os.remove(file_path)
+        logo = request.FILES.get('logo', None)
+        if logo != None:
+            file_path = os.path.dirname(os.path.dirname(__file__)) + '/media/' + logo.name
+            destination = open(file_path, 'wb+')
+            for chunk in logo.chunks():
+                destination.write(chunk)
+            destination.close()
+            img = addLogo(img, file_path)
+            os.remove(file_path)
 
         img.save("media/img/qrcode.png")
         file_path = '/media/img/qrcode.png'
 
         return render(request, 'hello/wxcode.html', {'url': file_path,
-                                                     'info': "支持微信和支付宝收款"})
+                                                     'info': "支持支付宝和微信收款"})
     else:
         return render(request, 'hello/index.html', {'url': None})
 
