@@ -263,29 +263,11 @@ ul{
     font-size: 12px;
     color: #ccc;
     margin: 0 auto;
-    /*border: 1px dashed #ccc;*/
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
 }
-/*.up-weixin-tips{*/
-  /*background-image: url(/dist/main/img/paycode_wap/weixin_saoma_tips.png?v=1);*/
-/*}*/
-/*.up-alipay-tips{*/
-  /*background-image: url(/dist/main/img/paycode_wap/alipay_saoma_tips.png?v=1);*/
-/*}*/
-/*.up-qqpay-tips{*/
-  /*background-image: url(/dist/main/img/paycode_wap/qqpay_saoma_tips.png?v=2);*/
-/*}*/
-/*.up-weixin-tips.saoma{*/
-  /*background-image: url(/dist/main/img/paycode_wap/weixin_saoma.png?v=1);*/
-/*}*/
-/*.up-alipay-tips.saoma{*/
-  /*background-image: url(/dist/main/img/paycode_wap/alipay_saoma.png?v=1);*/
-/*}*/
-/*.up-qqpay-tips.saoma{*/
-  /*background-image: url(/dist/main/img/paycode_wap/qqpay_saoma.png?v=1);*/
-/*}*/
+
 .more-pay-box{
 	text-align: right;
 	font-size: 12px;
@@ -671,12 +653,6 @@ ul{
 .merge-qrcode-tab .type_2{
 	color: #5ec790;
 }
-/*.merge-qrcode-tab .type_1 .icon{*/
-	/*background-image: url(/dist/main/img/paycode_wap/type_1.png);*/
-/*}*/
-/*.merge-qrcode-tab .type_2 .icon{*/
-	/*background-image: url(/dist/main/img/paycode_wap/type_2.png);*/
-/*}*/
 
 .user-defined{
 	width: 80%;
@@ -811,14 +787,7 @@ ul{
 	left: 50%;
 	margin-left: -7px;
 }
-/*.shanghu-page .items .top{*/
-	/*top: 0px;*/
-	/*background: url(/dist/main/img/paycode_wap/shanghu/dian_top.png) 0 0 no-repeat;*/
-/*}*/
-/*.shanghu-page .items .bottom{*/
-	/*bottom: 0px;*/
-	/*background: url(/dist/main/img/paycode_wap/shanghu/dian_bottom.png) 0 0 no-repeat;*/
-/*}*/
+
 .shanghu-page .items .left_line:before,
 .shanghu-page .items .right_line:after,
 .shanghu-page .items .top_line:before,
