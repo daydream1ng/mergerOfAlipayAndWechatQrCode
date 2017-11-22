@@ -75,6 +75,10 @@ def index(request):
     else:
         return render(request, 'hello/index.html', {'url': None})
 
+def indroduce(request):
+    return render(request, 'hello/introduce.html')
+
+
 def pay(request):
     agent = request.META.get('HTTP_USER_AGENT', None)
     print(agent)

@@ -1,0 +1,112 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'hello/styles.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'hello/weui.min.css' %}">
+<!doctype html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>收款码合并</title>
+    <meta name="keywords" content="微信支付宝二维码合并,微信支付宝二维码合一,微信支付宝收款二维码,	微信支付宝二维码整合,一码付,微信支付宝二维码,聚合支付"/>
+    <meta name="description" content="微信支付宝二合一收款，将支付宝二维码和微信二维码合并为一个二维码，无需手续费，我们的远景：让二维码生成更简单。"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge"/>
+    <meta http-equiv="mobile-agent" content="format=xhtml; url=http://hotapp.cn" />
+    <meta http-equiv="mobile-agent" content="format=html5; url=http://hotapp.cn" />
+    <meta name="renderer" content="webkit">
+    <meta content="email=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="csrf-token" content="jszuB6Hq2Ecn0NnmfhIZSMpUHMMqQfbpz8y9B0Vq">
+    <meta name="user-type" content="1">
+
+    </head>
+<body class="introduce-body">
+	    <div class="banner" id="banner">
+      	<p class="text1">钱直接打到个体账户，无手续费</p>
+      	<a href="{% url 'hello:index' %}" class="weui-btn weui-btn_primary link-btn">免费合并</a>
+    </div>
+    <div class="introduce_list">
+    	<ul>
+    		<li>
+    		    <div class="icon">
+    		    	<img src="../../static/hello/image/u1116.png" alt="合并微信支付宝收款码" />
+    		    </div>
+    		    <h3>合并微信支付宝收款码</h3>
+    		    <p class="wenda-p">通过合并后的二维码可以自动识别用户扫码方式，微信扫码则使用微信支付，支付宝扫码则使用支付宝支付，商家无需打印2个二维码，节省成本与空间。</p>
+    		</li>
+        <li>
+            <div class="icon">
+                <img src="../../static/hello/image/u1121.png" alt="合并微信支付宝收款码" />
+            </div>
+            <h3>安全，有保障</h3>
+            <p class="wenda-p">全新扫码转账技术，钱直接转到商家个体账户，芝麻收款不参与中间转账过程，完全免费提供技术支持，保证商家利益。</p>
+        </li>
+    		<li>
+          <div class="icon">
+                <img src="../../static/hello/image/u1126.png" alt="合并微信支付宝收款码" />
+            </div>
+            <h3>钱直接付款到个体账号，无手续费</h3>
+            <p class="wenda-p">用户通过扫描合并后的二维码转账，直接转到商户个体账户里，省去千分之6的手续费。</p>
+        </li>
+        <li>
+            <div class="icon">
+                <img src="../../static/hello/image/u1131.png" alt="合并微信支付宝收款码" />
+            </div>
+            <h3>方便快捷</h3>
+            <p class="wenda-p">一码收款，对于用户，无需关注扫码支付方式，直接扫码付款即可。不用担心不能微信支付或者支付宝支付</p>
+        </li>
+        <li>
+            <a href="{% url 'hello:index' %}" class="weui-btn weui-btn_primary open-merge">免费合并</a>
+        </li>
+    	</ul>
+    </div>
+    <div class="wenda">
+    	<h3 class="wenda-lable">常见问题</h3>
+    	<ul>
+    		<li>
+    			<div class="wenda-title">1.合并后的收款码有扫码次数和时间限制吗？</div>
+    			<div class="wenda-desc">无限制扫码次数；永久可用。</div>
+    		</li>
+    		<li>
+    			<div class="wenda-title">2.合并后的二维码安全吗？</div>
+    			<div class="wenda-desc">安全。技术上，我们只是对两种类型的收款码进行合并，让用户收款使用更方便</div>
+    		</li>
+    		<li>
+    			<div class="wenda-title">3.别人扫码付款后，钱打到哪里去了？</div>
+    			<div class="wenda-desc">打到您的个人账户。具体来说：微信扫码付款时，钱打到您的微信钱包里；支付宝扫码付款时，钱打到您的支付宝账户里</div>
+    		</li>
+    		<li>
+    			<div class="wenda-title">4.为什么微信扫码后还需要长按识别？</div>
+    			<div class="wenda-desc">微信接口未开放权限，无法直接调起微信转账页面，所以需要长按识二维码别进行转账。（给您带来不便还请谅解）目前支付宝接口已开放权限。可以直接扫码付款。</div>
+    		</li>
+    		<li>
+    			<div class="wenda-title">5.使用此功能时，支付宝、微信会向我收取费用吗？</div>
+    			<div class="wenda-desc">不会。此功能是对二维码进行合并，不涉及微信、支付宝的收费问题。</div>
+    		</li>
+    		<li>
+    			<div class="wenda-title">6.在网站上传收款码会泄露用户隐私资料吗？</div>
+    			<div class="wenda-desc">不会。收款码是个人的收款二维码，是客户向对方转账的一种方式，和商家平时向客户展示的收款码是一样的。</div>
+    		</li>
+    		<li>
+    			<div class="wenda-title">7.合并后的二维码能通过微信或者支付宝扫码转账码？</div>
+    			<div class="wenda-desc">可以。通过合并后的二维码可以自动识别用户扫码方式，微信扫码则使用微信支付，支付宝扫码则使用支付宝支付</div>
+    		</li>
+    		<li>
+    			<div class="wenda-title">8.合并二维码对于商家有什么好处？</div>
+    			<div class="wenda-desc">
+    				<p class="wenda-p">①对于商家来说可免中间手续费，收款直接转入到商家个体账户，不需经过第三方公司提现。</p>
+    				<p class="wenda-p">②一码在手，随扫随有：只保留一个扫码牌就可以了。 </p>
+    				<p class="wenda-p">③此功能免费使用</p>
+    			</div>
+    		</li>
+    	</ul>
+    </div>
+	<footer id="footer">
+	    <div class="weui-footer">
+            <p class="weui-footer__text footer__text"><a href="http://heyfox.top">技术支持：http://heyfox.top</a></p>
+        </div>
+	</footer>
+</body>
+</html>
+

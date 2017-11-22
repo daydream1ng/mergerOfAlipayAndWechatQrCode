@@ -8,10 +8,9 @@ from django.conf import settings
 
 import hello.views
 
-# Examples:
-# url(r'^$', 'gettingstarted.views.home', name='home'),
-# url(r'^blog/', include('blog.urls')),
 
 urlpatterns = [
+    # hello 支付宝和微信二维码合并
     url(r'^', include('hello.urls', namespace='hello')),
+    # 站点 mysite
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

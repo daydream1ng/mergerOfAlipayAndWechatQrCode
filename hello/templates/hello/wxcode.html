@@ -7,7 +7,7 @@
     <title>一码收款</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
 </head>
-<body>
+<body class="bg-body">
     <div class="qr-container">
         {% if url %}
             <img src="{{ url }}" height="300" width="300">
@@ -15,7 +15,10 @@
         <label class="info">{{ info }}</label>
     </div>
     <div class="footer">
-        <img src="../../static/zeyicheng.jpg" class="logo-img">
+{#        <img src="../../static/zeyicheng.jpg" class="logo-img">#}
+        <div class="weui-footer">
+            <p class="weui-footer__text footer__text"><a href="http://heyfox.top">heyfox.top</a></p>
+        </div>
     </div>
 </body>
 </html>
