@@ -148,7 +148,7 @@ ul{
 .help-header{
   height: 150px;
   position: relative;
-  background-image: url('../../static/hello/image/banner2_02.jpg');
+  background-image: url('image/banner2_02.jpg');
   background-repeat: no-repeat;
   background-size: cover;
 }
