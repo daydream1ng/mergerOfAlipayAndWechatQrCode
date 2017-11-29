@@ -12,5 +12,6 @@ import hello.views
 urlpatterns = [
     # hello 支付宝和微信二维码合并
     url(r'^', include('hello.urls', namespace='hello')),
+
     # 站点 mysite
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

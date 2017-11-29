@@ -8,6 +8,10 @@ import os
 from PIL import Image
 import qrcode
 # from hello.zxing import zxing_bar
+import requests
+from bs4 import BeautifulSoup
+import json
+
 
 
 # Create your views here.
@@ -176,3 +180,50 @@ def scanQrCode(path):
 # zbarlight==1.2
 # zbarlight==1.2
 # zbar==0.10
+
+#  youtube
+def search(request):
+    video = request.POST.get('video', None)
+    if video == None:
+        msg = {"isSuccess": False,
+               "msg": 'fail'}
+        print('参数错误', msg)
+        return HttpResponse(json.dumps(msg), content_type='application/json')
+
+    searchURL = "https://www.tubeoffline.com/downloadFrom.php"
+    # url = "https://youtu.be/Oqn9Z34eXZU"
+    # url = "https://www.pornhub.com/view_video.php?viewkey=ph584e1456dba72"
+    try:
+        response = requests.get(searchURL, params={"host": 'PornHub', "video": video}, timeout=10)
+    except:
+        msg = {"isSuccess": False,
+               "msg": 'time out'}
+        print('结果', msg)
+        return HttpResponse(json.dumps(msg), content_type='application/json')
+
+    errorURL = "https://www.tubeoffline.com/error.php"
+    print(response.url)
+    if response.url.find(errorURL) != -1:
+        print("》》》》视频地址错误 《《《《《")
+        msg = {"isSuccess": False,
+               "msg": 'address invalid'}
+        print('结果', msg)
+        return HttpResponse(json.dumps(msg), content_type='application/json')
+    else:
+        soup = BeautifulSoup(response.text, "html.parser")
+        data = {'src': '', 'img': ''}
+        for tag in soup.find_all("a"):
+            if tag.has_attr('download') and tag.has_attr('href') and tag.has_attr('rel'):
+                print('下载地址 》》》：', tag['href'])
+                data['src'] = tag['href']
+                break
+        for tag in soup.find_all(id="videoContainer"):
+            print('图片地址 》》》：', tag.img['src'])
+            data['img'] = tag.img['src']
+            break
+
+        msg = {"isSuccess": True,
+               'data': data,
+               "msg": 'success'}
+        print('结果', msg)
+        return HttpResponse(json.dumps(msg), content_type='application/json')
