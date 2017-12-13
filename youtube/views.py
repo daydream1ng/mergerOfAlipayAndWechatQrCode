@@ -1,11 +1,20 @@
 from django.core.serializers import json
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 
 import requests
 from bs4 import BeautifulSoup
 import json
+import webbrowser
+import urllib
+
+# 主页
+def index(request):
+    msg = request.GET.get('msg', '')
+    url = request.GET.get('url', '')
+    print(msg, url)
+    return render(request, 'youtube/index.html', {'msg': msg, 'url': url})
 
 #  youtube
 def search(request):
@@ -109,42 +118,29 @@ def verifyReceipt(request):
         print('结果', msg)
         return HttpResponse(json.dumps(msg), content_type='application/json')
 
-
-
-
-
 # YOUTUBE 视频下载
 def video(request):
-    videoURL = request.POST.get('video', None)
+    videoURL = request.POST.get('video', '')
+    videoURL.replace(' ', '')
     print(videoURL)
-    if videoURL == None:
-        msg = {"isSuccess": False,
-               "msg": 'fail'}
-        print('参数错误', msg)
-        return render(request, 'youtube/video.html', {'msg': '大丰'})
+    if len(videoURL) == 0:
+        return HttpResponseRedirect('/youtube/?msg=地址为空')
 
     searchURL = "https://www.tubeoffline.com/downloadFrom.php"
     # url = "https://youtu.be/Oqn9Z34eXZU"
     # url = "https://www.pornhub.com/view_video.php?viewkey=ph584e1456dba72"
     try:
-        response = requests.get(searchURL, params={"host": 'PornHub', "video": video}, timeout=10)
+        response = requests.get(searchURL, params={"host": 'PornHub', "video": videoURL}, timeout=10)
     except:
-        msg = {"isSuccess": False,
-               "msg": 'time out'}
-        print('结果', msg)
-        return HttpResponse(json.dumps(msg), content_type='application/json')
+        return HttpResponseRedirect('/youtube/?msg=地址有误')
 
     errorURL = "https://www.tubeoffline.com/error.php"
     print(response.url)
     if response.url.find(errorURL) != -1:
-        print("》》》》视频地址错误 《《《《《")
-        msg = {"isSuccess": False,
-               "msg": 'address invalid'}
-        print('结果', msg)
-        return HttpResponse(json.dumps(msg), content_type='application/json')
+        return HttpResponseRedirect('/youtube/?msg=地址有误')
     else:
         soup = BeautifulSoup(response.text, "html.parser")
-        data = {'src': '', 'img': ''}
+        data = {'src': '', 'img': '', 'msg': '视频下载地址解析成功，请用迅雷等工具下载'}
         for tag in soup.find_all("a"):
             if tag.has_attr('download') and tag.has_attr('href') and tag.has_attr('rel'):
                 print('下载地址 》》》：', tag['href'])
@@ -154,10 +150,6 @@ def video(request):
             print('图片地址 》》》：', tag.img['src'])
             data['img'] = tag.img['src']
             break
+        return render(request, 'youtube/index.html', {'msg': data['msg'], 'url': data['src']})
 
-        msg = {"isSuccess": True,
-               'data': data,
-               "msg": 'success'}
-        print('结果', data['src'])
-        return HttpResponse(json.dumps(msg), content_type='application/json')
 

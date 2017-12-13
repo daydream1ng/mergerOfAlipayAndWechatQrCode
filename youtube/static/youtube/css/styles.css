@@ -1,0 +1,62 @@
+
+.bg-body {
+     background-color: black;
+     background-image: url("../img/bgimg.jpg");
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing:border-box;
+    min-height:100%;
+    padding-bottom:20px;
+}
+
+.footer {
+    display: flex;
+    margin-top: -20px; /* footer高度的负值 */
+    height: 20px;
+    justify-content: center;
+    /*float: right;*/
+}
+
+.video-input {
+    width: 300px;
+    margin-bottom: 50px;
+    text-align: center;
+    color: black;
+    padding: 15px;
+    border:1px solid;
+    border-radius:7px;
+    font-size: x-small;
+}
+
+.submit-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    margin-top: 20px;
+    color: white;
+    border-color: white;
+    background-color: transparent;
+    width: 120px;
+    padding: 8px;
+    border:1px solid;
+    border-radius:4px;
+    font-size: smaller;
+}
+
+.logo-img {
+    width: 60px;
+    height: 20px;
+}
+
+.reminder-label {
+    color: white;
+    margin-top: 10px;
+    font-size: smaller;
+}

@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'youtube/css/styles.css' %}" />
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+    <title>Youtube视频下载</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+</head>
+
+
+<body class="bg-body">
+    <div class="container">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'youtube:video' %}">
+            {% csrf_token %}
+
+            <input class="video-input" type="text" name="video" id="search_url" placeholder="请输入Youtube等国外视频网站的视频播放链接"/>
+
+            <div class="submit-section">
+                <button type="submit">解析下载地址</button>
+                <label class="reminder-label">{{ msg }}</label>
+            </div>
+        </form>
+        {% if url != '' %}
+        <textarea id="downloadurl">{{ url }}</textarea>
+        <button onclick="jsCopy()">复制链接</button>
+        {% endif %}
+
+    </div>
+    <div class="footer">
+        <img src="../../static/youtube/img/zeyicheng.jpg" class="logo-img">
+    </div>
+</body>
+
+<script>
+    function jsCopy(){
+        var e=document.getElementById("downloadurl");//对象是contents
+        e.select(); //选择对象
+        tag=document.execCommand("Copy"); //执行浏览器复制命令
+        if(tag){
+          alert('复制内容成功');
+        }
+    }
+</script>
+
+</html>
