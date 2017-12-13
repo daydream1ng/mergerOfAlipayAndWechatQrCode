@@ -9,7 +9,4 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^pay/', views.pay, name='pay'),
     url(r'introduce/', views.indroduce, name='introduce'),
-    url(r'search/', views.search, name='search'),
-    url(r'video/', views.video, name='video'),
-    url(r'verifyReceipt/', views.verifyReceipt, name='verifyReceipt'),
 ]
