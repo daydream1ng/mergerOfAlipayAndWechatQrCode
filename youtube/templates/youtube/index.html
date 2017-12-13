@@ -15,7 +15,7 @@
         <form method="POST" enctype="multipart/form-data" action="{% url 'youtube:video' %}">
             {% csrf_token %}
 
-            <input class="video-input" type="text" name="video" id="search_url" placeholder="请输入Youtube等国外视频网站的视频播放链接"/>
+            <input class="video-input" type="text" name="video" id="search_url" placeholder="请输入Youtube等国外知名视频网站的视频播放链接"/>
 
             <div class="submit-section">
                 <button type="submit">解析下载地址</button>

@@ -130,14 +130,14 @@ def video(request):
     # url = "https://youtu.be/Oqn9Z34eXZU"
     # url = "https://www.pornhub.com/view_video.php?viewkey=ph584e1456dba72"
     try:
-        response = requests.get(searchURL, params={"host": 'PornHub', "video": videoURL}, timeout=10)
+        response = requests.get(searchURL, params={"host": 'PornHub', "video": videoURL}, timeout=20)
     except:
-        return HttpResponseRedirect('/youtube/?msg=地址有误')
+        return HttpResponseRedirect('/youtube/?msg=解析超时，请重试')
 
     errorURL = "https://www.tubeoffline.com/error.php"
     print(response.url)
     if response.url.find(errorURL) != -1:
-        return HttpResponseRedirect('/youtube/?msg=地址有误')
+        return HttpResponseRedirect('/youtube/?msg=视频地址有误')
     else:
         soup = BeautifulSoup(response.text, "html.parser")
         data = {'src': '', 'img': '', 'msg': '视频下载地址解析成功，请用迅雷等工具下载'}

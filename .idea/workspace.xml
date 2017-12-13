@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359a28de-035f-488a-8167-0c41dbaa023e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtube/templates/youtube/video.html" afterPath="$PROJECT_DIR$/youtube/templates/youtube/video.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtube/urls.py" afterPath="$PROJECT_DIR$/youtube/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtube/templates/youtube/index.html" afterPath="$PROJECT_DIR$/youtube/templates/youtube/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/youtube/views.py" afterPath="$PROJECT_DIR$/youtube/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +37,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/youtube/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="143" column="38" lean-forward="true" selection-start-line="143" selection-start-column="38" selection-end-line="143" selection-end-column="38" />
+            <state relative-caret-position="45">
+              <caret line="130" column="75" lean-forward="false" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="75" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -49,8 +49,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/youtube/templates/youtube/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="26" column="48" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
+            <state relative-caret-position="148">
+              <caret line="17" column="108" lean-forward="false" selection-start-line="17" selection-start-column="108" selection-end-line="17" selection-end-column="108" />
               <folding />
             </state>
           </provider>
@@ -178,9 +178,9 @@
         <option value="$PROJECT_DIR$/gettingstarted/urls.py" />
         <option value="$PROJECT_DIR$/youtube/urls.py" />
         <option value="$PROJECT_DIR$/youtube/templates/youtube/video.html" />
-        <option value="$PROJECT_DIR$/youtube/templates/youtube/index.html" />
         <option value="$PROJECT_DIR$/youtube/static/youtube/css/styles.css" />
         <option value="$PROJECT_DIR$/youtube/views.py" />
+        <option value="$PROJECT_DIR$/youtube/templates/youtube/index.html" />
       </list>
     </option>
   </component>
@@ -1031,14 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/youtube/templates/youtube/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="26" column="48" lean-forward="false" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/youtube/static/youtube/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -1055,10 +1047,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/youtube/templates/youtube/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="17" column="108" lean-forward="false" selection-start-line="17" selection-start-column="108" selection-end-line="17" selection-end-column="108" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/youtube/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="143" column="38" lean-forward="true" selection-start-line="143" selection-start-column="38" selection-end-line="143" selection-end-column="38" />
+        <state relative-caret-position="45">
+          <caret line="130" column="75" lean-forward="false" selection-start-line="130" selection-start-column="13" selection-end-line="130" selection-end-column="75" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
